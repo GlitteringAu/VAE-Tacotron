@@ -170,11 +170,11 @@ def trans(arr):
 
 
 if __name__ == "__main__":
-    test_spec = spectrogram(load_wav("LJ001-0001.wav"))
+    test_spec = spectrogram(load_wav("../LJ001-0001.wav"))
     # test_spec = trans(test_spec)
     print(type(test_spec))
     print(np.shape(test_spec))
     # print(find_endpoint(test_spec))
     test_wav = inv_spectrogram(test_spec)
     # print(type(test_wav))
-    save_wav(test_wav, "test.wav")
+    save_wav(test_wav, "../test.wav")
