@@ -3,7 +3,7 @@ from vae import VAE
 from text.symbols import symbols
 import hparams as hp
 import random
-
+import torchsnooper
 
 class Encoder(nn.Module):
     def __init__(self, hidden_size):
@@ -19,7 +19,7 @@ class Encoder(nn.Module):
         ##############################
         # input_: (batch, seq_length)
         ##############################
-        # print(np.shape(input_))
+        # print('---------------------------------', np.shape(input_))  # [1, 25]
         # input_: (batch, length)
         # 转置矩阵，因为第一维是batch，所以转置的是第二维和第三维
         # print(np.shape(self.embed(input_)))
@@ -29,7 +29,7 @@ class Encoder(nn.Module):
         ##############################
         # input_: (batch, embedding, seq_length)
         ##############################
-        # print(np.shape(input_))
+        # print('*************************', np.shape(input_))  # [1, 256, 25]
         prenet = self.prenet.forward(input_)
         # print(np.shape(prenet))
         ##############################
@@ -155,28 +155,30 @@ class Tacotron(nn.Module):
     #     # print(z_copied)
     #     return z_copied
 
+    # @torchsnooper.snoop()
     def forward(self, characters, mel_input):
-        # print(np.shape(mel_input))
+        # print('-----------------------------------------', np.shape(mel_input))  # [1, 80, 1]
         z, mu, log_var = self.vae(mel_input)
         # print(np.shape(mu))
         # print(np.shape(log_var))
 
         # print(np.shape(mel_input))
-        # print(np.shape(z))
+        # print('----------------------', np.shape(z))
+        # print('-----------------------------------------', np.shape(characters))  # [1, 25]
         memory = self.encoder.forward(characters)
         ##############################
         # memory: (batch, seq_length, 256)
         ##############################
         # print(np.shape(self.copy_z(z, memory.size(1))))
-        # print(np.shape(z))
-        # print(np.shape(memory))
+        # print('-----------------------------------------', np.shape(z))  # [32, 16]
+        # print('-----------------------------------------', np.shape(memory))  # [1, 25, 240]
         # z = self.copy_z(z, memory.size(1))
         z = torch.stack([torch.stack([z[batch] for _ in range(
-            memory.size(1))]) for batch in range(z.size(0))])
+            memory.size(1))]) for batch in range(z.size(0))]).cuda()
+        # print('-----------------------------------------', np.shape(z))  # [32, 25, 16]
         # print(memory)
         # memory = memory + z
-        # print(np.shape(memory))
-
+        # print('-----------------------------------------', np.shape(memory))  # [1, 25, 240]
         memory = torch.cat((memory, z), 2)
 
         # print(np.shape(memory))

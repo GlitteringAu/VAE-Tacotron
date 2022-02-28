@@ -172,7 +172,7 @@ def main(args):
             # Clipping gradients to avoid gradient explosion
             nn.utils.clip_grad_norm_(model.parameters(), 1.)
 
-            # Update weights
+            # Update weights  更新参数
             optimizer.step()
 
             if current_step % hp.log_step == 0:
@@ -259,9 +259,9 @@ if __name__ == "__main__":
     #                     help='Batch size', default=hp.batch_size)
 
     # Test
-    parser.add_argument('--batch_size', type=int, help='Batch size', default=2)
+    parser.add_argument('--batch_size', type=int, help='Batch size', default=64)
     parser.add_argument('--restore_step', type=int,
-                        help='Global step to restore checkpoint', default=0)
+                        help='Global step to restore checkpoint', default=33000)
 
     args = parser.parse_args()
     main(args)
