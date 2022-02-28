@@ -25,12 +25,12 @@ z_dim = 16
 # Training:
 outputs_per_step = 5
 batch_size = 32
-epochs = 10
+epochs = 100
 lr = 0.001
 # decay_step = [500000, 1000000, 2000000]
 decay_step = [20, 60]
 # save_step = 2000
-save_step = 100
+save_step = 1000
 # log_step = 200
 log_step = 5
 clear_Time = 20
