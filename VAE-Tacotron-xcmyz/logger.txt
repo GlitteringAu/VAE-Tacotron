@@ -1,0 +1,10 @@
+Epoch [1/10], Step [5/65500], Linear Loss: 0.3767, Mel Loss: 0.1986, KL Loss: 0.218506, Total Loss: 0.6054.
+Time Used: 18.592s, Estimated Time Remaining: 209938.708s.
+Epoch [1/10], Step [10/65500], Linear Loss: 0.2408, Mel Loss: 0.1555, KL Loss: 0.087647, Total Loss: 0.3635.
+Time Used: 30.731s, Estimated Time Remaining: 181105.845s.
+Epoch [1/10], Step [15/65500], Linear Loss: 0.1611, Mel Loss: 0.1550, KL Loss: 0.089863, Total Loss: 0.3255.
+Time Used: 42.389s, Estimated Time Remaining: 172329.625s.
+Epoch [1/10], Step [20/65500], Linear Loss: 0.1408, Mel Loss: 0.1552, KL Loss: 0.074365, Total Loss: 0.3000.
+Time Used: 50.513s, Estimated Time Remaining: 157248.386s.
+Epoch [1/10], Step [25/65500], Linear Loss: 0.1484, Mel Loss: 0.1569, KL Loss: 0.030182, Total Loss: 0.2613.
+Time Used: 63.107s, Estimated Time Remaining: 178784.512s.
